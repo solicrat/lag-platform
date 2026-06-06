@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>LAG | туса для сенпая и его кун-тян</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/tR5gk5nx/background-removed-toolpix.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("xK_M6El6MhPK5Aye7");
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c12;
+            color: #eef2ff;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .app {
+            display: flex;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: rgba(18, 22, 35, 0.95);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255, 107, 107, 0.2);
+            padding: 30px 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .logo img {
+            width: 180px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.8));
+            transition: filter 0.3s ease;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .nav-item {
+            padding: 14px 18px;
+            margin: 8px 0;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 500;
+            color: #a0a8c0;
+        }
+
+        .nav-item i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 179, 71, 0.1));
+            color: #ff6b6b;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .nav-item:hover:not(.active) {
+            background: rgba(100, 65, 165, 0.2);
+            color: #ffb347;
+        }
+
+        .sidebar-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .favorites-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .fav-game-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .fav-game-item:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateX(5px);
+        }
+
+        .fav-game-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .fav-game-item span {
+            flex: 1;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .fav-game-item i {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+        }
+
+        .empty-fav {
+            font-size: 0.85rem;
+            color: #6c7293;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px 40px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(100, 65, 165, 0.15));
+            border-radius: 32px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ffb347, #6441a5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #b8c0e0;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #ff6b6b20;
+            padding: 8px 20px;
+            border-radius: 40px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #ffb347;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 30px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, transparent);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+            margin-bottom: 50px;
+        }
+
+        .game-card {
+            background: rgba(22, 26, 40, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 107, 0.5);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .game-icon-wrapper {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a0f24, #0f0a1a);
+            overflow: hidden;
+        }
+
+        .game-icon {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3));
+        }
+
+        .game-card:hover .game-icon {
+            transform: scale(1.1);
+        }
+
+        .game-hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .game-hover-overlay {
+            opacity: 1;
+        }
+
+        .hover-fav-btn {
+            background: rgba(255, 107, 107, 0.9);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+            font-size: 1.8rem;
+            transform: scale(0.8);
+            transition: transform 0.2s ease;
+        }
+
+        .game-card:hover .hover-fav-btn {
+            transform: scale(1);
+        }
+
+        .hover-fav-btn:hover {
+            transform: scale(1.15) !important;
+            background: #ff6b6b;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+        }
+
+        .hover-fav-btn.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .game-category {
+            font-size: 0.8rem;
+            color: #ffb347;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-description {
+            font-size: 0.85rem;
+            color: #9ca3c0;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+
+        .game-page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0c12;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .game-header {
+            background: rgba(10, 12, 18, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .game-header h2 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .game-header h2 img {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+        }
+
+        .back-btn {
+            background: rgba(255, 107, 107, 0.2);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #ff6b6b;
+        }
+
+        .game-iframe-container {
+            flex: 1;
+            background: #000;
+        }
+
+        .game-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .global-footer {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(100, 65, 165, 0.15));
+            border-top: 1px solid rgba(255, 107, 107, 0.2);
+            padding: 30px 40px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        /* Кнопка ФОРМА СВЯЗИ — белый текст, по центру кнопки */
+        .footer-left {
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            background: linear-gradient(135deg, #ff6b6b, #ffb347);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* При наведении: текст становится чёрным, фон меняется */
+        .footer-left:hover {
+            color: #0a0c12;
+            /* чёрный (основной цвет фона сайта) */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.8);
+            background: linear-gradient(135deg, #ffb347, #ff6b6b);
+        }
+
+        /* Для широких экранов: футер сдвигаем вправо на ширину сайдбара (280px) */
+        @media (min-width: 901px) {
+            .global-footer {
+                margin-left: 280px;
+                width: calc(100% - 280px);
+            }
+
+            .footer-left {
+                margin-left: 0;
+            }
+        }
+
+        /* Для мобильных: кнопка по центру, футер в колонку */
+        @media (max-width: 900px) {
+            .global-footer {
+                margin-left: 0;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .footer-right {
+                text-align: center;
+            }
+
+            .footer-right p {
+                justify-content: center;
+            }
+
+            .footer-left {
+                margin: 0 auto;
+            }
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+
+        .footer-right p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .footer-right i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .footer-right a {
+            color: #eef2ff;
+            text-decoration: none;
+        }
+
+        .footer-right a:hover {
+            color: #ffb347;
+        }
+
+        .feedback-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .feedback-btn {
+            background: #1f1f2e;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-radius: 60px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .feedback-btn.active {
+            background: #9b4dff;
+            box-shadow: 0 0 15px #9b4dff;
+        }
+
+        .feedback-btn:hover {
+            transform: scale(1.05);
+            background: #b77cff;
+        }
+
+        .reviews-game-selector {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .game-selector-card {
+            background: #1e1e2a;
+            border-radius: 24px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 180px;
+        }
+
+        .game-selector-card.active {
+            background: #9b4dff;
+            box-shadow: 0 0 10px #9b4dff;
+        }
+
+        .game-selector-card:hover {
+            transform: translateY(-5px);
+            background: #2a2a3e;
+        }
+
+        .game-selector-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .review-item {
+            background: rgba(30, 30, 45, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 15px 20px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ffd966;
+        }
+
+        .review-text {
+            color: #eef2ff;
+            line-height: 1.4;
+        }
+
+        .add-review-form {
+            background: #1a1a2a;
+            border-radius: 28px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .add-review-form input,
+        .add-review-form textarea {
+            width: 100%;
+            background: #0f0f1a;
+            border: 1px solid #3a3a55;
+            border-radius: 40px;
+            padding: 12px 20px;
+            color: white;
+            font-family: inherit;
+            margin-bottom: 15px;
+            resize: none;
+        }
+
+        .add-review-form button {
+            background: #9b4dff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-review-form button:hover {
+            transform: scale(1.02);
+            background: #b77cff;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1a1a2a;
+            border-radius: 40px;
+            padding: 30px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: #0f0f1a;
+            border: 1px solid #3a3a55;
+            border-radius: 40px;
+            padding: 12px 20px;
+            color: white;
+            font-family: inherit;
+            margin-bottom: 20px;
+            resize: none;
+        }
+
+        .contact-form button {
+            background: #9b4dff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .success-toast {
+            background: #2e7d32;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            text-align: center;
+            margin-top: 20px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 101;
+                background: #ff6b6b;
+                border: none;
+                padding: 12px;
+                border-radius: 12px;
+                color: white;
+                cursor: pointer;
+            }
+
+            .global-footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-right {
+                text-align: center;
+            }
+
+            .footer-right p {
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .page-content {
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Глобальный скролл-бар */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e2a;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b6b;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffb347;
+        }
+
+        /* Для Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #ff6b6b #1e1e2a;
+        }
+
+        .reviews-list {
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* СКРОЛЛБАР ДЛЯ СПИСКА ОТЗЫВОВ (фиолетовый) */
+        .reviews-list::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .reviews-list::-webkit-scrollbar-track {
+            background: #2d1b36;
+            border-radius: 10px;
+        }
+
+        .reviews-list::-webkit-scrollbar-thumb {
+            background: #9b4dff;
+            border-radius: 10px;
+        }
+
+        .reviews-list::-webkit-scrollbar-thumb:hover {
+            background: #b77cff;
+        }
+
+        /* Для Firefox */
+        .reviews-list {
+            scrollbar-width: thin;
+            scrollbar-color: #9b4dff #2d1b36;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+    <div class="app">
+        <div class="sidebar" id="sidebar">
+            <div class="logo"><img src="https://i.postimg.cc/tR5gk5nx/background-removed-toolpix.png" alt="LAG Logo">
+            </div>
+            <ul class="nav-menu" id="navMenu"></ul>
+            <div class="sidebar-section">
+                <div class="sidebar-title"><i class="fas fa-star"></i> Быстрый доступ</div>
+                <div class="favorites-list" id="sidebarFavList"></div>
+            </div>
+        </div>
+        <div class="main-content" id="mainContent"></div>
+    </div>
+    <footer class="global-footer" id="globalFooter">
+        <div class="footer-left" id="footerFeedbackBtn">ФОРМА СВЯЗИ</div>
+        <div class="footer-right">
+            <p><i class="fab fa-telegram"></i> <a href="https://t.me/laggameplatform"
+                    target="_blank">@laggameplatform</a></p>
+            <p><i class="fas fa-phone-alt"></i> +7 677 677 6767</p>
+        </div>
+    </footer>
+
+    <script>
+        // ---------- ИГРА 1: INVOKER SPEED TRAINER ----------
+        const INVOKER_GAME_HTML = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoker Speed Trainer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"><\/script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(135deg, #0a0a0f, #0f0a1a); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .game-layout { display: flex; gap: 30px; align-items: center; justify-content: center; max-width: 1600px; width: 100%; flex-wrap: wrap; }
+        .container { flex: 1.2; min-width: 320px; max-width: 1000px; background: linear-gradient(135deg, #1a0f24, #0f0a1a); padding: 25px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 40px rgba(255,107,107,0.4); text-align: center; border: 2px solid #ff6b6b; }
+        .invoker-side { flex: 0.8; min-width: 280px; display: flex; justify-content: center; align-items: center; }
+        .invoker-side img { width: 100%; max-width: 550px; height: auto; max-height: 85vh; object-fit: contain; filter: drop-shadow(0 0 40px rgba(255,107,107,0.6)); transition: transform 0.3s ease; }
+        .invoker-side img:hover { transform: scale(1.03); }
+        h1 { font-size: 2rem; color: #ff6b6b; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .keys { background: rgba(100,65,165,0.3); padding: 10px; border-radius: 50px; display: inline-flex; gap: 12px; margin-bottom: 20px; }
+        .key { background: #2a1a35; border: 2px solid #ff6b6b; color: #ffd966; width: 50px; height: 50px; border-radius: 15px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; }
+        .challenge-box { background: linear-gradient(135deg, #ff6b6b20, #6441a520); border-radius: 20px; padding: 20px; margin: 20px 0; border: 2px solid #ff6b6b; }
+        .challenge-box h3 { font-size: 1rem; margin-bottom: 10px; color: #d0d0e0; }
+        .target-spell { font-size: 1.8rem; font-weight: bold; color: #ffd966; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .target-spell img { width: 50px; height: 50px; border-radius: 12px; }
+        .progress { margin-top: 12px; color: #d0d0e0; }
+        .progress span { color: #ff6b6b; font-weight: bold; font-size: 1.3rem; }
+        .spells { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; margin: 25px 0; }
+        .spell-btn { background: linear-gradient(135deg, #2a1a35, #1a0f24); border: 3px solid #6441a5; border-radius: 20px; padding: 15px; cursor: pointer; transition: 0.2s; position: relative; }
+        .spell-btn:hover { transform: scale(1.03); border-color: #ff6b6b; box-shadow: 0 0 20px rgba(255,107,107,0.4); }
+        .spell-btn:active { transform: scale(0.97); }
+        .spell-btn::after { content: attr(data-key); position: absolute; top: 8px; right: 12px; background: #ff6b6b; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .spell-btn img { width: 55px; height: 55px; border-radius: 12px; }
+        .spell-btn span { display: block; margin-top: 8px; font-weight: bold; color: #d0d0e0; }
+        .invoker-panel { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.4); border-radius: 50px; flex-wrap: wrap; }
+        .elements { display: flex; gap: 12px; }
+        .element { width: 70px; height: 70px; border-radius: 50%; background-size: cover; background-position: center; transition: 0.2s; border: 2px solid transparent; }
+        .element.quas { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSISTSVJ9zf6YMLiEPeAcrE_32DCgLkcoa8Pw&s'); }
+        .element.wex { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXKgiOa_gofEuiNlL18VAPkW-z3yuD6O-Kfg&s'); }
+        .element.exort { background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ0glzR5CI_6sM3zVX_zTMqtYfi_dV24QlLw&s'); }
+        .element.correct { animation: pulse 0.4s; }
+        @keyframes pulse { 0% { transform: scale(1); border-color: transparent; } 50% { transform: scale(1.2); border-color: #00ffaa; box-shadow: 0 0 20px #00ffaa; } 100% { transform: scale(1); border-color: transparent; } }
+        .invoke-area { text-align: center; }
+        .invoke-btn { background: linear-gradient(45deg, #ff6b6b, #8b0000); color: white; border: none; padding: 12px 40px; font-size: 1.3rem; border-radius: 50px; cursor: pointer; font-weight: bold; border: 2px solid #ffd966; position: relative; }
+        .invoke-btn::after { content: 'R'; position: absolute; top: -8px; right: -8px; background: #ff6b6b; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid #ffd966; }
+        .current-spell { margin-top: 12px; font-size: 1rem; color: #ffd966; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .stats { display: flex; justify-content: center; gap: 30px; margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 50px; flex-wrap: wrap; }
+        .stats div { font-size: 1.2rem; color: white; }
+        .stats span { color: white; font-weight: bold; font-size: 1.5rem; margin-left: 8px; }
+        .message { font-size: 1rem; margin: 15px 0; color: #64a4ff; font-weight: bold; min-height: 50px; }
+        .control-btns { display: flex; gap: 15px; justify-content: center; margin-top: 15px; }
+        .ctrl-btn { background: linear-gradient(45deg, #6441a5, #2a0845); color: white; border: none; padding: 12px 30px; font-size: 1rem; border-radius: 50px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .ctrl-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(100,65,165,0.5); }
+        @media (max-width: 900px) { .game-layout { flex-direction: column; } .invoker-side img { max-height: 280px; max-width: 280px; } .container { padding: 15px; } .element { width: 50px; height: 50px; } .spell-btn img { width: 40px; height: 40px; } .stats div { font-size: 0.9rem; } }
+body {
+    overflow: hidden;  /* запрещает прокрутку всей страницы */
+}
+/* дополнительно скрыть скролл, если появится от переполнения */
+::-webkit-scrollbar {
+    display: none;
+}
+* {
+    scrollbar-width: none;
+}    
+        </style>
+</head>
+<body>
+<div class="game-layout">
+    <div class="container">
+        <h1><i class="fas fa-hat-wizard"></i> INVOKER TRAINER <i class="fas fa-bolt"></i></h1>
+        <div class="keys"><div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div></div>
+        <div class="challenge-box">
+            <h3>🎯 ТРЕБУЕТСЯ ПРОКАСТОВАТЬ:</h3>
+            <div class="target-spell" id="targetSpellDisplay"><span>???</span></div>
+            <div class="progress">Прогресс: <span id="progressVal">0</span> / <span id="totalVal">10</span></div>
+        </div>
+        <div class="spells">
+            <div class="spell-btn" id="quasBtn" data-key="Q"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSISTSVJ9zf6YMLiEPeAcrE_32DCgLkcoa8Pw&s" alt="Quas"><span>Quas</span></div>
+            <div class="spell-btn" id="wexBtn" data-key="W"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXKgiOa_gofEuiNlL18VAPkW-z3yuD6O-Kfg&s" alt="Wex"><span>Wex</span></div>
+            <div class="spell-btn" id="exortBtn" data-key="E"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ0glzR5CI_6sM3zVX_zTMqtYfi_dV24QlLw&s" alt="Exort"><span>Exort</span></div>
+        </div>
+        <div class="invoker-panel">
+            <div class="elements" id="elementsArea">
+                <div class="element quas" id="el1"></div>
+                <div class="element quas" id="el2"></div>
+                <div class="element quas" id="el3"></div>
+            </div>
+            <div class="invoke-area">
+                <button class="invoke-btn" id="invokeButton">INVOKE</button>
+                <div class="current-spell" id="currentSpellArea"><span>⚡ Готовь комбинацию</span></div>
+            </div>
+        </div>
+        <div class="stats">
+            <div>⏱️ ВРЕМЯ <span id="timerVal">0.00</span>с</div>
+            <div>🏆 РЕКОРД <span id="bestVal" class="best-time">--</span>с</div>
+        </div>
+        <div class="message" id="messageArea">🎮 Нажми СТАРТ!</div>
+        <div class="control-btns">
+            <button class="ctrl-btn" id="startGame">▶ СТАРТ</button>
+            <button class="ctrl-btn" id="resetGame">🔄 СБРОС</button>
+        </div>
+    </div>
+    <div class="invoker-side">
+        <img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/invoker.png"
+             alt="Invoker"
+             onerror="this.src='https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/invoker.png'">
+    </div>
+</div>
+<script>
+    const sounds = {
+        click: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3'], volume: 0.2 }),
+        quas: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-ice-cracking-2405.mp3'], volume: 0.2 }),
+        wex: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-strong-wind-2399.mp3'], volume: 0.2 }),
+        exort: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-fire-burning-2402.mp3'], volume: 0.2 }),
+        invoke: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-magic-spell-2595.mp3'], volume: 0.3 }),
+        success: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3'], volume: 0.4 }),
+        complete: new Howl({ src: ['https://assets.mixkit.co/sfx/preview/mixkit-winning-fanfare-trumpet-2018.mp3'], volume: 0.5 })
+    };
+    const spellIcons = {
+        '❄️ Cold Snap': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_cold_snap.png',
+        '🧊 Ice Wall': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_ice_wall.png',
+        '👻 Ghost Walk': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_ghost_walk.png',
+        '🌪️ EMP': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_emp.png',
+        '🌀 Tornado': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_tornado.png',
+        '⚡ Alacrity': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_alacrity.png',
+        '🔥 Sun Strike': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_sun_strike.png',
+        '🔮 Forge Spirit': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_forge_spirit.png',
+        '☄️ Chaos Meteor': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_chaos_meteor.png',
+        '🌟 Deafening Blast': 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/invoker_deafening_blast.png'
+    };
+    const allSpells = [
+        { name: '❄️ Cold Snap', combo: ['q','q','q'] },
+        { name: '🧊 Ice Wall', combo: ['q','q','e'] },
+        { name: '👻 Ghost Walk', combo: ['q','q','w'] },
+        { name: '🌪️ EMP', combo: ['w','w','w'] },
+        { name: '🌀 Tornado', combo: ['w','w','q'] },
+        { name: '⚡ Alacrity', combo: ['w','w','e'] },
+        { name: '🔥 Sun Strike', combo: ['e','e','e'] },
+        { name: '🔮 Forge Spirit', combo: ['e','e','q'] },
+        { name: '☄️ Chaos Meteor', combo: ['e','e','w'] },
+        { name: '🌟 Deafening Blast', combo: ['q','w','e'] }
+    ];
+    function getSpellByCombo(elements) {
+        let sorted = [...elements].sort().join('');
+        for (let s of allSpells) {
+            if ([...s.combo].sort().join('') === sorted) return s;
+        }
+        return null;
+    }
+    function displaySpellWithIcon(name, element) {
+        if (!element) return;
+        let icon = spellIcons[name];
+        if (icon) element.innerHTML = '<img src="'+icon+'" style="width:36px;height:36px;border-radius:8px;"> <span>'+name+'</span>';
+        else element.innerHTML = '<span>'+name+'</span>';
+    }
+    const el1 = document.getElementById('el1');
+    const el2 = document.getElementById('el2');
+    const el3 = document.getElementById('el3');
+    const quasBtn = document.getElementById('quasBtn');
+    const wexBtn = document.getElementById('wexBtn');
+    const exortBtn = document.getElementById('exortBtn');
+    const invokeBtn = document.getElementById('invokeButton');
+    const startBtn = document.getElementById('startGame');
+    const resetBtn = document.getElementById('resetGame');
+    const targetDisplay = document.getElementById('targetSpellDisplay');
+    const currentSpellArea = document.getElementById('currentSpellArea');
+    const progressSpan = document.getElementById('progressVal');
+    const totalSpan = document.getElementById('totalVal');
+    const timerSpan = document.getElementById('timerVal');
+    const bestSpan = document.getElementById('bestVal');
+    const messageSpan = document.getElementById('messageArea');
+    let currentElements = ['quas','quas','quas'];
+    let challenges = [];
+    let challengeIndex = 0;
+    let gameActive = false;
+    let startTime = null;
+    let timerInterval = null;
+    let bestTime = localStorage.getItem('invokerBest');
+    const TOTAL = 10;
+    totalSpan.textContent = TOTAL;
+    if (bestTime) bestSpan.textContent = parseFloat(bestTime).toFixed(2);
+    else bestSpan.textContent = '--';
+    function genChallenges() {
+        let shuffled = [...allSpells];
+        for (let i = shuffled.length-1; i>0; i--) {
+            let j = Math.floor(Math.random()*(i+1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, TOTAL);
+    }
+    function updateElementsUI() {
+        el1.className = 'element ' + currentElements[0];
+        el2.className = 'element ' + currentElements[1];
+        el3.className = 'element ' + currentElements[2];
+    }
+    function getCurrentSpellName() {
+        let combo = currentElements.map(e => e[0]);
+        let spell = getSpellByCombo(combo);
+        return spell ? spell.name : '❓ Неизвестно';
+    }
+    function updateCurrentSpellUI() {
+        let name = getCurrentSpellName();
+        displaySpellWithIcon(name, currentSpellArea);
+    }
+    function animateCorrect() {
+        [el1, el2, el3].forEach(el => {
+            el.classList.add('correct');
+            setTimeout(() => el.classList.remove('correct'), 400);
+        });
+    }
+    function checkInvoke() {
+        if (!gameActive) {
+            messageSpan.textContent = '⚠️ Сначала нажми СТАРТ!';
+            return;
+        }
+        let currentCombo = currentElements.map(e => e[0]);
+        let currentSpellObj = getSpellByCombo(currentCombo);
+        let targetSpell = challenges[challengeIndex];
+        if (!currentSpellObj) {
+            messageSpan.textContent = '❌ Неизвестная комбинация!';
+            return;
+        }
+        if (currentSpellObj.name === targetSpell.name) {
+            sounds.invoke.play();
+            sounds.success.play();
+            animateCorrect();
+            challengeIndex++;
+            progressSpan.textContent = challengeIndex;
+            if (challengeIndex >= TOTAL) {
+                let totalTime = (Date.now() - startTime) / 1000;
+                timerSpan.textContent = totalTime.toFixed(2);
+                if (timerInterval) clearInterval(timerInterval);
+                gameActive = false;
+                messageSpan.innerHTML = '🏆 ПОБЕДА! ' + totalTime.toFixed(2) + ' сек! 🏆';
+                sounds.complete.play();
+                if (!bestTime || totalTime < parseFloat(bestTime)) {
+                    bestTime = totalTime.toFixed(2);
+                    localStorage.setItem('invokerBest', bestTime);
+                    bestSpan.textContent = bestTime;
+                    messageSpan.innerHTML = '🏆 НОВЫЙ РЕКОРД! ' + totalTime.toFixed(2) + ' сек! 🏆';
+                }
+            } else {
+                displaySpellWithIcon(challenges[challengeIndex].name, targetDisplay);
+                messageSpan.textContent = '✅ Верно! Следующее: ' + challenges[challengeIndex].name;
+                messageSpan.style.color = '#00ffaa';
+                updateCurrentSpellUI();
+            }
+        } else {
+            sounds.invoke.play();
+            messageSpan.textContent = '❌ Нужно: ' + targetSpell.name + ', у тебя: ' + currentSpellObj.name;
+            messageSpan.style.color = '#ff6b6b';
+        }
+    }
+    function addElement(type) {
+        if (!gameActive) {
+            messageSpan.textContent = '⚠️ Нажми СТАРТ!';
+            return;
+        }
+        currentElements.shift();
+        currentElements.push(type);
+        updateElementsUI();
+        updateCurrentSpellUI();
+        if (type === 'quas') sounds.quas.play();
+        else if (type === 'wex') sounds.wex.play();
+        else if (type === 'exort') sounds.exort.play();
+    }
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            if (gameActive && startTime) {
+                timerSpan.textContent = ((Date.now() - startTime)/1000).toFixed(2);
+            }
+        }, 100);
+    }
+    function startGame() {
+        challenges = genChallenges();
+        challengeIndex = 0;
+        currentElements = ['quas','quas','quas'];
+        updateElementsUI();
+        updateCurrentSpellUI();
+        displaySpellWithIcon(challenges[0].name, targetDisplay);
+        progressSpan.textContent = 0;
+        timerSpan.textContent = '0.00';
+        gameActive = true;
+        startTime = Date.now();
+        startTimer();
+        messageSpan.textContent = '🎯 Начали! Кастуй: ' + challenges[0].name;
+        messageSpan.style.color = '#00ffaa';
+        sounds.click.play();
+    }
+    function resetGame() {
+        if (timerInterval) clearInterval(timerInterval);
+        gameActive = false;
+        startTime = null;
+        currentElements = ['quas','quas','quas'];
+        challengeIndex = 0;
+        updateElementsUI();
+        updateCurrentSpellUI();
+        targetDisplay.innerHTML = '<span>???</span>';
+        progressSpan.textContent = 0;
+        timerSpan.textContent = '0.00';
+        messageSpan.textContent = '🔄 Игра сброшена. Нажми СТАРТ!';
+        messageSpan.style.color = '#64a4ff';
+        sounds.click.play();
+    }
+    quasBtn.onclick = () => addElement('quas');
+    wexBtn.onclick = () => addElement('wex');
+    exortBtn.onclick = () => addElement('exort');
+    invokeBtn.onclick = checkInvoke;
+    startBtn.onclick = startGame;
+    resetBtn.onclick = resetGame;
+    document.addEventListener('keydown', (e) => {
+        let key = e.key.toLowerCase();
+        if (['q','w','e','r'].includes(key)) e.preventDefault();
+        if (key === 'q') addElement('quas');
+        else if (key === 'w') addElement('wex');
+        else if (key === 'e') addElement('exort');
+        else if (key === 'r') checkInvoke();
+    });
+    updateElementsUI();
+    updateCurrentSpellUI();
+<\/script>
+</body>
+</html>`;
+
+        // ---------- ИГРА 2: ДАТЕБАЁ КВЕСТ ----------
+        const NARUTO_GAME_HTML = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Датебаё Квест | Наруто тест</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: linear-gradient(145deg, #0a1f1a 0%, #05100d 100%); min-height: 100vh; color: #f0f3f8; padding: 20px; }
+        .game-layout { display: flex; gap: 20px; max-width: 1400px; margin: 0 auto; align-items: center; justify-content: center; flex-wrap: wrap; }
+        .side { flex: 0 0 auto; width: 280px; display: flex; justify-content: center; align-items: center; min-height: 500px; }
+        .side img { height: 500px; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(5px 0 15px rgba(0,0,0,0.5)); }
+        .game-core { flex: 2; min-width: 320px; background: rgba(10,25,24,0.85); backdrop-filter: blur(14px); border-radius: 56px; border: 2px solid rgba(70,150,110,0.6); padding: 25px; }
+        .greeting { text-align: center; margin-bottom: 15px; transition: all 0.3s ease; }
+        .greeting img { max-width: 150px; border-radius: 20px; box-shadow: 0 0 20px rgba(255,180,60,0.5); }
+        .greeting.hide { display: none; }
+        .question-image { text-align: center; margin: 10px auto; }
+        .question-image img { max-height: 160px; border-radius: 28px; box-shadow: 0 12px 25px black; }
+        .question-text { font-size: 1.3rem; background: #0b2622b3; padding: 15px; border-radius: 50px; margin: 15px 0; }
+        .answers-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin: 20px 0; }
+        .answer-btn { background: #12322c; border: 1px solid #357a60; border-radius: 60px; padding: 12px; cursor: pointer; transition: 0.1s; display: flex; align-items: center; gap: 10px; color: white; }
+        .answer-btn:hover { transform: scale(1.02); background: #1f5448; }
+        .answer-prefix { background: #1c6b58; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+        .answer-correct { background: #197a4a !important; box-shadow: 0 0 0 2px #b9ffb0; }
+        .answer-wrong { background: #97272f !important; }
+        .score-board { background: #071e1b; border-radius: 40px; padding: 15px; text-align: center; margin-top: 15px; }
+        .score-number { font-size: 2.5rem; font-weight: 800; color: #f7da9c; }
+        .difficulty-badge { background: #0e3d32; display: inline-block; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; }
+        .start-btn { background: linear-gradient(105deg, #236653, #0c352b); border: none; padding: 14px 32px; border-radius: 60px; font-weight: bold; font-size: 1.2rem; color: white; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .start-btn:hover { transform: scale(1.02); background: linear-gradient(105deg, #2e8267, #166353); }
+        .finish-container { text-align: center; padding: 20px; }
+        .finish-container h2 { font-size: 2rem; margin-bottom: 20px; color: #ffd966; }
+        .finish-container p { font-size: 2rem; font-weight: bold; margin-bottom: 20px; }
+        .finish-gif { margin: 20px auto; }
+        .finish-gif img { max-width: 90%; width: 300px; border-radius: 20px; display: block; margin: 0 auto; }
+        .finish-container .start-btn { margin-top: 20px; }
+        @media (max-width: 900px) { .side { width: 200px; min-height: 400px; } .side img { height: 300px; } }
+        @media (max-width: 700px) { .side { display: none; } }
+        body {
+    overflow: hidden;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+* {
+    scrollbar-width: none;
+}
+    </style>
+</head>
+<body>
+<div class="game-layout">
+    <div class="side"><img src="https://i.ibb.co/gLrhjW00/IMG-9079.png" alt="Наруто" onerror="this.src='https://static.wikia.nocookie.net/naruto/images/0/0d/Naruto_%28Part_II%29_Infobox.png'"></div>
+    <div class="game-core" id="gameCore">
+        <div class="greeting" id="greetingGif">
+            <img src="https://media1.tenor.com/m/DeGavwOm_TQAAAAC/rawgamer914.gif" alt="Naruto dattebayo">
+        </div>
+        <div id="quizDynamicZone"></div>
+    </div>
+    <div class="side"><img src="https://i.ibb.co/m3xSqmH/IMG-9088.png" alt="Саске" onerror="this.src='https://static.wikia.nocookie.net/naruto/images/e/e5/Sasuke_Part_II_Infobox.png'"></div>
+</div>
+<script>
+    const ORIGINAL_QUESTIONS = [
+        { difficulty:1, text:"Какая фамилия у Наруто?", options:["Узумаки","Хьюга","Намикадзе","Сарутоби"], correct:0, image:null },
+        { difficulty:1, text:"Как зовут учителя Наруто, который стал Хокаге?", options:["Какаши","Ирука","Минато","Джирайя"], correct:0, image:null },
+        { difficulty:1, text:"Кто это?", options:["Наруто","Саске","Какаши","Обито"], correct:0, image:"https://gifs.obs.ru-moscow-1.hc.sbercloud.ru/d00c27613e06bc8025cff5ff8bbbc3f2abd521a9_300.webp" },
+        { difficulty:1, text:"Какой зверь запечатан в Наруто?", options:["Девятихвостый","Восьмихвостый","Однохвостый","Нулевой"], correct:0, image:null },
+        { difficulty:1, text:"Кто первый враг из Акацуки после таймскипа?", options:["Итачи","Кисаме","Дейдара","Пейн"], correct:2, image:null},
+        { difficulty:2, text:"Узнай технику", options:["Чидори","Расенган","Райкири","Огненный шар"], correct:1, image:"https://avatars.mds.yandex.net/i?id=b366d7de88d091f47b0562ebfafb055181576e5f-4360535-images-thumbs&n=13" },
+        { difficulty:2, text:"Кто убил Итачи Учиху?", options:["Саске","Болезнь","Обито","Кабуто"], correct:1, image:null },
+        { difficulty:2, text:"Мать Наруто – Кушина. Как звали отца?", options:["Минато","Джирайя","Хирузен","Асума"], correct:0, image:null },
+        { difficulty:2, text:"Узнай героя", options:["Шикамару","Чоджи","Неджи","Киба"], correct:0, image:"https://avatars.mds.yandex.net/i?id=17f1cf595a322f6a71e151e440052404ca81f20e-8404489-images-thumbs&n=13" },
+        { difficulty:2, text:"Кто правил Амегакуре после Яхико?", options:["Нагато","Обито","Конан","Мадара"], correct:0, image:null },
+        { difficulty:3, text:"Почему Обито начал мировую войну?", options:["Месть за Рин","Сила","Мадара принудил","Безумие"], correct:0, image:null },
+        { difficulty:3, text:"Почему Наруто не совмещал мудреца и Кураму в начале?", options:["Сложно контролировать","Курама мешал","Техника не позволяла","Нет чакры"], correct:0, image:null },
+        { difficulty:3, text:"Узнай технику", options:["Аматерасу","Суссано","Цукуёми","Камуи"], correct:1, image:"https://static.wikia.nocookie.net/ex-naruto/images/6/65/Sasuke%27s_Complete_Susanoo.png/revision/latest/scale-to-width-down/1200?cb=20150821015439" },
+        { difficulty:3, text:"Отец Саске и Итачи?", options:["Фугаку","Обито","Мадара","Хаширама"], correct:0, image:null },
+        { difficulty:3, text:"Кто основал Коноху?", options:["Хаширама","Тобирама","Хирузен","Минато"], correct:0, image:null },
+        { difficulty:4, text:"Почему Наруто не использовал режим мудреца в финальной битве с Саске?", options:["Статуя ГедоМазо блокировала","Не было времени","Курама сильнее","Саске подавил"], correct:0, image:null },
+        { difficulty:4, text:"Узнай бога шиноби", options:["Хагоромо","Хамура","Ашура","Индра"], correct:0, image:"https://avatars.mds.yandex.net/i?id=68afe058665cf1bedd28a4a417b6e5c7_l-10115334-images-thumbs&n=13" },
+        { difficulty:4, text:"Кто предал Мадару во время цукуёми?", options:["Чёрный Зецу","Наруто","Кагуя","Саске"], correct:0, image:null },
+        { difficulty:4, text:"Кто дал Какаси Шаринган?", options:["Обито","Мадара","Итачи","Саске"], correct:0, image:null },
+        { difficulty:4, text:"Техника Хаширамы для победы над Мадарой?", options:["Истинный нескольких тысяч рук","Будда рук","Мудрец","Голем"], correct:0, image:null }
+    ];
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+    function shuffleQuestionOptions(question) {
+        const originalOptions = [...question.options];
+        const correctAnswerText = originalOptions[question.correct];
+        const shuffledOptions = shuffleArray([...originalOptions]);
+        const newCorrectIndex = shuffledOptions.indexOf(correctAnswerText);
+        return { ...question, options: shuffledOptions, correct: newCorrectIndex };
+    }
+    let groups = {1:[],2:[],3:[],4:[]};
+    ORIGINAL_QUESTIONS.forEach(q => groups[q.difficulty].push(q));
+    function getQuestions(diff) {
+        let pool = groups[diff] || [];
+        let copy = [...pool];
+        if (copy.length > 5) copy = copy.slice(0, 5);
+        while (copy.length < 5) copy.push({...pool[0]});
+        let shuffledQuestions = shuffleArray(copy);
+        return shuffledQuestions.map(q => shuffleQuestionOptions(q));
+    }
+    let state = { active: false, diff: 1, questions: [], idx: 0, score: 0, answered: 0, lock: false };
+    function updateUI() {
+        let s = document.getElementById("scoreDisplay");
+        if (s) s.innerText = state.score;
+        let a = document.getElementById("answeredDisplay");
+        if (a) a.innerText = state.answered;
+        let d = document.getElementById("diffLabel");
+        if (d) { let m = {1:"Генин",2:"Тюнин",3:"Джоунин",4:"Легенда"}; d.innerHTML = "🌀 " + m[state.diff]; }
+    }
+    function finishGame() {
+        state.active = false;
+        let msg = state.score === 20 ? "Идеально! Ты Хокаге!" : (state.score >= 15 ? "Сильный воин!" : "Тренируйся, датебаё!");
+        document.getElementById("quizDynamicZone").innerHTML = \`
+            <div class="finish-container">
+                <h2>🎉 Тест пройден 🎉</h2>
+                <p>⭐ \${state.score} / 20 правильных</p>
+                <p>📋 Отвечено: \${state.answered} / 20</p>
+                <div class="finish-gif">
+                    <img src="https://media1.tenor.com/m/DeGavwOm_TQAAAAC/rawgamer914.gif" alt="Naruto dattebayo">
+                </div>
+                <div><i class="fas fa-comment-dots"></i> Наруто: «\${msg} ДАТЕБАЁ!»</div>
+                <button class="start-btn" id="finalRestart">🔄 Пройти заново</button>
+            </div>
+        \`;
+        let btn = document.getElementById("finalRestart");
+        if (btn) btn.onclick = () => startNewGame();
+    }
+    function renderQuestion() {
+        if (!state.active) return;
+        let q = state.questions[state.idx];
+        if (!q) { finishGame(); return; }
+        let imgHtml = q.image ? '<div class="question-image"><img src="' + q.image + '" loading="lazy"></div>' : '';
+        let answersHtml = '';
+        for (let i = 0; i < q.options.length; i++) {
+            let letter = String.fromCharCode(65 + i);
+            answersHtml += '<button class="answer-btn" data-idx="' + i + '"><span class="answer-prefix">' + letter + '</span> ' + q.options[i] + '</button>';
+        }
+        let html = '<div>' + imgHtml + '<div class="question-text">❓ ' + q.text + '</div><div class="answers-grid" id="answersGrid">' + answersHtml + '</div><div class="score-board"><div><span class="score-number" id="scoreDisplay">' + state.score + '</span> / 20 правильных</div><div><span class="difficulty-badge" id="diffLabel"></span></div><div style="margin-top:8px;">📋 Отвечено: <span id="answeredDisplay">' + state.answered + '</span> / 20</div></div></div>';
+        document.getElementById("quizDynamicZone").innerHTML = html;
+        updateUI();
+        let btns = document.querySelectorAll(".answer-btn");
+        btns.forEach(btn => {
+            btn.onmouseenter = () => btn.style.transform = "scale(1.02)";
+            btn.onmouseleave = () => btn.style.transform = "scale(1)";
+            btn.onclick = (e) => {
+                if (state.lock) return;
+                let selected = parseInt(btn.dataset.idx);
+                let isCorrect = (selected === q.correct);
+                state.lock = true;
+                state.answered++;
+                if (isCorrect) {
+                    state.score++;
+                    btn.classList.add("answer-correct");
+                } else {
+                    btn.classList.add("answer-wrong");
+                    let correctBtn = btns[q.correct];
+                    if (correctBtn) correctBtn.classList.add("answer-correct");
+                }
+                updateUI();
+                setTimeout(() => {
+                    state.lock = false;
+                    let next = state.idx + 1;
+                    if (next < state.questions.length) {
+                        state.idx = next;
+                        renderQuestion();
+                    } else {
+                        if (state.diff < 4) {
+                            state.diff++;
+                            state.questions = getQuestions(state.diff);
+                            state.idx = 0;
+                            renderQuestion();
+                        } else {
+                            finishGame();
+                        }
+                    }
+                }, 500);
+            };
+        });
+    }
+    function startNewGame() {
+        const gifElement = document.getElementById("greetingGif");
+        if (gifElement) gifElement.classList.add("hide");
+        state.active = true;
+        state.diff = 1;
+        state.score = 0;
+        state.answered = 0;
+        state.questions = getQuestions(1);
+        state.idx = 0;
+        state.lock = false;
+        renderQuestion();
+    }
+    function renderStartMenu() {
+        const gifElement = document.getElementById("greetingGif");
+        if (gifElement) gifElement.classList.remove("hide");
+        document.getElementById("quizDynamicZone").innerHTML = '<div style="text-align:center;padding:15px;"><h2>🍥 ДАТЕБАЁ КВЕСТ 🍥</h2><p style="margin:20px 0;">4 уровня, 20 вопросов по миру Наруто.<br>Варианты ответов каждый раз перемешиваются!</p><button class="start-btn" id="globalStartBtn">🌀 Начать экзамен 🌀</button><div style="margin-top:30px;"><i class="fas fa-shuriken"></i> Стань Хокаге, датебаё!</div></div>';
+        let btn = document.getElementById("globalStartBtn");
+        if (btn) btn.onclick = startNewGame;
+    }
+    renderStartMenu();
+<\/script>
+</body>
+</html>`;
+
+        // ---------- ИГРА 3: GIMME THE TRAP ----------
+        const TRAP_GAME_HTML = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Gimme the Trap — кликер</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+        body { background: black; font-family: 'DS Kork SHA', 'Impact', 'Arial Black', fantasy; overflow: hidden; height: 100vh; width: 100vw; }
+        #loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 200; transition: opacity 0.5s ease; }
+        .loading-title { font-size: 5rem; color: white; letter-spacing: 0.2em; margin-bottom: 50px; text-align: center; font-weight: normal; }
+        .progress-bar-container { width: 300px; height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin-bottom: 30px; }
+        .progress-fill { width: 0%; height: 100%; background: white; transition: width 0.2s linear; }
+        .play-btn { background: transparent; border: 2px solid #666; color: #666; font-family: 'DS Kork SHA','Impact','Arial Black',fantasy; font-size: 2rem; padding: 10px 40px; cursor: pointer; transition: all 0.2s ease; letter-spacing: 0.1em; }
+        .play-btn.active { border-color: white; color: white; }
+        .play-btn.active:hover { transform: scale(1.05); }
+        #game-screen { display: none; width: 100%; height: 100%; background: black; position: relative; overflow-y: auto; }
+        .game-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; z-index: 0; pointer-events: none; }
+        .game-container { position: relative; z-index: 2; width: 100%; height: 100%; display: flex; justify-content: flex-end; padding: 30px; gap: 38px; }
+        .rapper-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 25px; margin-right: 20px; }
+        .rapper-card { text-align: center; background: rgba(0,0,0,0.6); backdrop-filter: blur(12px); border-radius: 75px; padding: 38px 50px; border: 1px solid rgba(255,255,255,0.2); width: 100%; max-width: 750px; }
+        .rapper-name { font-size: 2.6rem; color: white; margin-bottom: 25px; text-shadow: 0 0 5px black; word-break: break-word; }
+        .rapper-image { cursor: pointer; transition: transform 0.1s ease; width: 400px; height: 400px; object-fit: contain; display: block; margin: 0 auto; border-radius: 38px; filter: drop-shadow(0 0 15px rgba(0,0,0,0.8)); }
+        .rapper-image:active { transform: scale(0.97); }
+        .progress-section { width: 100%; margin-top: 25px; }
+        .progress-wrapper { background: #2d1b36; border-radius: 50px; height: 62px; position: relative; overflow: hidden; box-shadow: inset 0 0 5px black; }
+        .progress-fill-violet { width: 0%; height: 100%; background: #9b4dff; transition: width 0.2s ease; border-radius: 50px; }
+        .progress-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; color: white; text-shadow: 0 0 3px black; letter-spacing: 1px; }
+        .level-area { display: flex; justify-content: flex-end; margin-top: 10px; font-size: 1.4rem; color: #ccc; }
+        .toast-under-progress { text-align: center; margin-top: 12px; font-size: 1.3rem; color: white; background: rgba(0,0,0,0.7); display: inline-block; padding: 6px 18px; border-radius: 40px; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+        .sidebar { width: 425px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-radius: 40px; padding: 32px; display: flex; flex-direction: column; gap: 32px; border: 1px solid rgba(255,255,255,0.2); height: fit-content; max-height: 90vh; overflow-y: auto; }
+        .stats { background: rgba(0,0,0,0.5); border-radius: 32px; padding: 20px; text-align: center; }
+        .stats p { font-size: 1.8rem; margin: 10px 0; color: white; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .stats span { font-weight: bold; color: white; }
+        .lean-icon { width: 42px; height: 42px; object-fit: contain; vertical-align: middle; filter: drop-shadow(0 0 3px #9b4dff); }
+        .upgrades { display: flex; flex-direction: column; gap: 18px; }
+        .upgrade-btn { background: #1f1f2e; border: none; font-family: 'DS Kork SHA','Impact',fantasy; font-size: 1.2rem; padding: 15px; border-radius: 75px; color: white; cursor: pointer; transition: 0.1s; text-align: left; padding-left: 25px; border: 1px solid #3a3a55; }
+        .upgrade-btn:hover:not(:disabled) { background: #2a2a3e; transform: scale(1.02); }
+        .upgrade-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .collection-btn, .reset-btn, .shop-btn { background: #9b4dff; border: none; font-family: 'DS Kork SHA','Impact',fantasy; font-size: 1.4rem; padding: 15px; border-radius: 75px; color: white; cursor: pointer; margin-top: 8px; transition: 0.2s; text-align: center; }
+        .collection-btn:hover, .reset-btn:hover, .shop-btn:hover { background: #b77cff; transform: scale(1.02); }
+        .reset-btn { background: #7c3aed; }
+        .shop-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a14; z-index: 500; display: flex; flex-direction: column; visibility: hidden; opacity: 0; transition: 0.2s; }
+        .shop-page.open { visibility: visible; opacity: 1; }
+        .shop-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #11111e; border-bottom: 2px solid #9b4dff; }
+        .shop-header h2 { font-size: 2rem; color: white; }
+        .shop-stats { display: flex; gap: 30px; font-size: 1.6rem; background: #1f1f2e; padding: 10px 25px; border-radius: 60px; }
+        .shop-stats span { color: white; display: flex; align-items: center; gap: 8px; }
+        .close-shop { background: #9b4dff; border: none; padding: 8px 25px; border-radius: 40px; font-size: 1.2rem; cursor: pointer; color: white; }
+        .shop-content { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .converter-card { background: rgba(30,30,45,0.9); backdrop-filter: blur(12px); border-radius: 60px; padding: 40px 60px; text-align: center; border: 1px solid rgba(155,77,255,0.5); min-width: 500px; }
+        .converter-card h3 { font-size: 2rem; margin-bottom: 25px; color: #ffd966; }
+        .converter-row { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 20px 0; }
+        .currency-box { background: #000000aa; padding: 15px 25px; border-radius: 50px; font-size: 1.8rem; display: flex; align-items: center; gap: 12px; color: white; }
+        .currency-box img { width: 48px; height: 48px; }
+        .converter-controls { display: flex; gap: 20px; justify-content: center; margin: 20px 0; }
+        .converter-controls button { background: #2a2a3e; border: none; font-size: 2rem; width: 60px; height: 60px; border-radius: 60px; color: white; cursor: pointer; transition: 0.1s; }
+        .converter-controls button:hover { background: #9b4dff; transform: scale(1.05); }
+        .convert-btn { background: #2e7d32; border: none; font-size: 1.6rem; padding: 12px 40px; border-radius: 60px; color: white; cursor: pointer; margin-top: 15px; transition: 0.1s; }
+        .convert-btn:hover { background: #1b5e20; transform: scale(1.03); }
+        .rate-text { font-size: 1.2rem; color: #aaa; margin-top: 20px; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 300; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: 0.2s; }
+        .modal.open { visibility: visible; opacity: 1; }
+        .modal-content { background: #0f0f1a; width: 85%; max-width: 1100px; border-radius: 48px; padding: 35px; color: white; font-family: monospace; max-height: 80vh; overflow-y: auto; scrollbar-width: auto; scrollbar-color: #9b4dff #2d1b36; }
+        .modal-content::-webkit-scrollbar { width: 12px; }
+        .modal-content::-webkit-scrollbar-track { background: #2d1b36; border-radius: 12px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #9b4dff; border-radius: 12px; }
+        .rappers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 25px; }
+        .rapper-card-collection { background: #1e1e2a; border-radius: 28px; padding: 18px; text-align: center; }
+        .rapper-card-collection img { width: 160px; height: 160px; object-fit: contain; display: block; margin: 0 auto; border-radius: 24px; }
+        .close-modal { margin-top: 25px; background: #9b4dff; border: none; padding: 12px 28px; border-radius: 50px; color: white; cursor: pointer; font-size: 1.2rem; display: block; margin-left: auto; margin-right: auto; }
+        .center-toast { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: black; color: white; font-family: 'DS Kork SHA','Impact',fantasy; font-size: 2rem; padding: 20px 40px; border-radius: 60px; white-space: nowrap; z-index: 600; border: 2px solid white; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+        @media (max-width: 800px) {
+            .game-container { flex-direction: column; align-items: center; gap: 20px; }
+            .sidebar { width: 90%; padding: 20px; }
+            .rapper-area { margin-right: 0; }
+            .rapper-image { width: 280px; height: 280px; }
+            .rapper-card { max-width: 95%; padding: 20px; }
+            .converter-card { min-width: 90%; padding: 25px; }
+            .shop-stats { font-size: 1rem; gap: 15px; }
+            .center-toast { font-size: 1.4rem; padding: 12px 24px; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+<div id="loading-screen">
+    <div class="loading-title">gimme the trap</div>
+    <div class="progress-bar-container"><div class="progress-fill" id="loadProgressFill"></div></div>
+    <button class="play-btn" id="playBtn" disabled>PLAY</button>
+</div>
+<div id="game-screen">
+    <img class="game-bg" src="https://images.cybersport.ru/images/as-is/plain/eb/eb09948c-6992-4ceb-b1ba-7aeefdd16b22.webp@jpg" alt="bg">
+    <div class="game-container">
+        <div class="rapper-area">
+            <div class="rapper-card">
+                <div class="rapper-name" id="rapperName">madk1d</div>
+                <img class="rapper-image" id="rapperImage" src="https://i.ibb.co/RTyMhtbw/1-1-Photoroom.png" alt="rapper" draggable="false">
+                <div class="progress-section">
+                    <div class="progress-wrapper"><div class="progress-fill-violet" id="progressFill"></div><div class="progress-text" id="progressText">0/0</div></div>
+                    <div class="level-area"><span id="levelLabel">lvl 1</span></div>
+                </div>
+                <div id="toastUnderProgress" class="toast-under-progress"></div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="stats">
+                <p><span style="font-size:2rem;">💰</span> <span id="moneyDisplay">0</span></p>
+                <p><img src="https://i.ibb.co/gZgCKghL/2026-05-15-21-54-14-Photoroom.png" class="lean-icon"> <span id="leanDisplay">0</span></p>
+                <p>💥 за клик: <span id="incomeDisplay">1</span> $</p>
+                <p>⚡ авто: <span id="autoSpeedDisplay">выкл</span></p>
+            </div>
+            <div class="upgrades">
+                <button class="upgrade-btn" id="upgradeClickBtn">💪 УСИЛИТЕЛЬ КЛИКА (ур.1→2) — 100$</button>
+                <button class="upgrade-btn" id="upgradeAutoBtn">🤖 АВТОКЛИКЕР (ур.1) — 500$</button>
+                <button class="shop-btn" id="openShopBtn">🏪 МАГАЗИН</button>
+                <button class="collection-btn" id="openCollectionBtn">🎤 КОЛЛЕКЦИЯ</button>
+                <button class="reset-btn" id="resetGameBtn">⟳ ОБНОВИТЬ</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="shopPage" class="shop-page"><div class="shop-header"><h2>🏪 МАГАЗИН</h2><div class="shop-stats"><span>$ <span id="shopMoney">0</span></span><span><img src="https://i.ibb.co/gZgCKghL/2026-05-15-21-54-14-Photoroom.png" style="width:32px; vertical-align:middle;"> <span id="shopLean">0</span></span></div><button class="close-shop" id="closeShopBtn">✖ ЗАКРЫТЬ</button></div><div class="shop-content"><div class="converter-card"><h3>КОНВЕРТЕР ВАЛЮТЫ</h3><div class="converter-row"><div class="currency-box">$ <span id="convDollars">0</span></div><div>→</div><div class="currency-box"><img src="https://i.ibb.co/gZgCKghL/2026-05-15-21-54-14-Photoroom.png" style="width:36px;"> <span id="convLeanAmount">1</span></div></div><div class="converter-controls"><button id="decLeanBtn">−</button><button id="incLeanBtn">+</button></div><button id="convertBtn" class="convert-btn">ПЕРЕВОД</button><div class="rate-text">1 Lean = 10 000 $</div></div></div></div>
+<div id="collectionModal" class="modal"><div class="modal-content"><h3>КОЛЛЕКЦИЯ РЭПЕРОВ</h3><div id="collectionGrid" class="rappers-grid"></div><button class="close-modal" id="closeModalBtn">ЗАКРЫТЬ</button></div></div>
+<div id="centerToast" class="center-toast">нет бабосов братка</div>
+<script>
+    const RAPPERS = [
+        { id:0, name:"madk1d", image:"https://i.ibb.co/RTyMhtbw/1-1-Photoroom.png", requiredClicks:0, unlockLevel:1 },
+        { id:1, name:"yeschapskiii", image:"https://i.ibb.co/qYQvKD4G/Screenshot-20260515-090622-Photoroom.png", requiredClicks:25, unlockLevel:2 },
+        { id:2, name:"Pepel Nahudi", image:"https://i.ibb.co/G32SfpxW/Screenshot-20260515-090708-Photoroom.png", requiredClicks:67, unlockLevel:3 },
+        { id:3, name:"Scally Milano", image:"https://i.ibb.co/SDBx4c0L/Screenshot-20260515-090753-Photoroom.png", requiredClicks:125, unlockLevel:4 },
+        { id:4, name:"unki", image:"https://i.ibb.co/DfkCq0kL/Screenshot-20260515-090853-Photoroom.png", requiredClicks:350, unlockLevel:5 },
+        { id:5, name:"Toxi$", image:"https://i.ibb.co/TDV0QH8H/Screenshot-20260515-091411-Photoroom.png", requiredClicks:677, unlockLevel:6 },
+        { id:6, name:"Кирилл Бледный", image:"https://i.ibb.co/23khwmBF/Screenshot-20260515-091522-Photoroom.png", requiredClicks:1488, unlockLevel:7 },
+        { id:7, name:"СЛАВА КПСС", image:"https://i.ibb.co/3m596wf8/Screenshot-20260515-091603-Photoroom.png", requiredClicks:5000, unlockLevel:8 },
+        { id:8, name:"Og Buda", image:"https://i.ibb.co/NdH23G5R/Screenshot-20260515-091658-Photoroom.png", requiredClicks:12000, unlockLevel:9 },
+        { id:9, name:"9mice", image:"https://i.ibb.co/h1WL4ZRC/Screenshot-20260515-091752-Photoroom.png", requiredClicks:25000, unlockLevel:10 },
+        { id:10, name:"ROCKET", image:"https://i.ibb.co/4nS7WVCY/Screenshot-20260515-091842-Photoroom.png", requiredClicks:44444, unlockLevel:11 },
+        { id:11, name:"Kai Angel", image:"https://i.ibb.co/dsg635Lw/Screenshot-20260515-091917-Photoroom.png", requiredClicks:67000, unlockLevel:12 },
+        { id:12, name:"Платина", image:"https://i.ibb.co/DPbsZx22/Screenshot-20260515-092000-Photoroom.png", requiredClicks:99999, unlockLevel:13 },
+        { id:13, name:"PHARAOH", image:"https://i.ibb.co/7dctSsVT/Screenshot-20260515-092048-Photoroom.png", requiredClicks:444444, unlockLevel:14 },
+        { id:14, name:"FACE", image:"https://i.ibb.co/ZRpsdY6C/Screenshot-20260515-092120-Photoroom.png", requiredClicks:1000000, unlockLevel:15 },
+        { id:15, name:"MORGENSTERN", image:"https://i.ibb.co/KcVV6Kk2/morgen.png", requiredClicks:6666666, unlockLevel:16 }
+    ];
+    const MAX_LEVEL = RAPPERS.length;
+    const CLICK_UPGRADES = [{level:1,income:1,cost:0},{level:2,income:4,cost:100},{level:3,income:10,cost:250},{level:4,income:25,cost:677},{level:5,income:50,cost:1488},{level:6,income:200,cost:4000},{level:7,income:500,cost:10000},{level:8,income:1000,cost:20000},{level:9,income:2500,cost:50000},{level:10,income:7500,cost:100000},{level:11,income:15000,cost:500000},{level:12,income:30000,cost:1250000}];
+    const MAX_CLICK_LEVEL = CLICK_UPGRADES.length;
+    const AUTO_UPGRADES = [{level:1,interval:2.0,cost:500},{level:2,interval:1.5,cost:750},{level:3,interval:1.0,cost:1000},{level:4,interval:0.8,cost:2500},{level:5,interval:0.5,cost:5000},{level:6,interval:0.3,cost:15000},{level:7,interval:0.25,cost:20000},{level:8,interval:0.2,cost:100000},{level:9,interval:0.15,cost:2000000}];
+    const MAX_AUTO_LEVEL = AUTO_UPGRADES.length;
+    let gameState = { currentLevel:1, progressPoints:0, money:0, lean:0, clickUpgradeLevel:1, autoUpgradeLevel:0, unlockedRappers:new Array(MAX_LEVEL).fill(false), morgensternForcedAuto:false };
+    gameState.unlockedRappers[0] = true;
+    let autoClickerInterval = null, isGameActive = false, isPageVisible = true, shopOpen = false, convLeanAmount = 1;
+    const loadingScreen = document.getElementById('loading-screen'), gameScreen = document.getElementById('game-screen'), playBtn = document.getElementById('playBtn'), loadProgressFill = document.getElementById('loadProgressFill');
+    const rapperNameSpan = document.getElementById('rapperName'), rapperImage = document.getElementById('rapperImage'), progressFillDiv = document.getElementById('progressFill'), progressTextSpan = document.getElementById('progressText'), levelLabelSpan = document.getElementById('levelLabel');
+    const moneyDisplay = document.getElementById('moneyDisplay'), leanDisplay = document.getElementById('leanDisplay'), incomeDisplay = document.getElementById('incomeDisplay'), autoSpeedDisplay = document.getElementById('autoSpeedDisplay');
+    const upgradeClickBtn = document.getElementById('upgradeClickBtn'), upgradeAutoBtn = document.getElementById('upgradeAutoBtn'), openShopBtn = document.getElementById('openShopBtn'), openCollectionBtn = document.getElementById('openCollectionBtn'), resetGameBtn = document.getElementById('resetGameBtn');
+    const modal = document.getElementById('collectionModal'), collectionGrid = document.getElementById('collectionGrid'), closeModalBtn = document.getElementById('closeModalBtn'), toastUnder = document.getElementById('toastUnderProgress'), centerToast = document.getElementById('centerToast');
+    const shopPage = document.getElementById('shopPage'), shopMoneySpan = document.getElementById('shopMoney'), shopLeanSpan = document.getElementById('shopLean'), convDollarsSpan = document.getElementById('convDollars'), convLeanAmountSpan = document.getElementById('convLeanAmount'), incLeanBtn = document.getElementById('incLeanBtn'), decLeanBtn = document.getElementById('decLeanBtn'), convertBtn = document.getElementById('convertBtn'), closeShopBtn = document.getElementById('closeShopBtn');
+    function showToast(msg) { toastUnder.style.opacity = '1'; toastUnder.innerText = msg || "нет бабосов братка"; setTimeout(() => { toastUnder.style.opacity = '0'; }, 1500); }
+    function showCenterToast(msg) { centerToast.style.opacity = '1'; centerToast.innerText = msg || "нет бабосов братка"; setTimeout(() => { centerToast.style.opacity = '0'; }, 1500); }
+    function getIncomePerClick() { return CLICK_UPGRADES[gameState.clickUpgradeLevel-1].income; }
+    function getEffectiveAutoInterval() { if(gameState.autoUpgradeLevel===0) return null; let base = AUTO_UPGRADES[gameState.autoUpgradeLevel-1].interval; if(gameState.morgensternForcedAuto) return 1.0; return base; }
+    function getRequiredPointsForCurrentLevel() { if(gameState.currentLevel>=MAX_LEVEL) return 0; return RAPPERS[gameState.currentLevel].requiredClicks; }
+    function saveGame() { localStorage.setItem('gimmeTheTrap', JSON.stringify({ currentLevel:gameState.currentLevel, progressPoints:gameState.progressPoints, money:gameState.money, lean:gameState.lean, clickUpgradeLevel:gameState.clickUpgradeLevel, autoUpgradeLevel:gameState.autoUpgradeLevel, unlockedRappers:gameState.unlockedRappers, morgensternForcedAuto:gameState.morgensternForcedAuto })); }
+    function loadGame() { let saved = localStorage.getItem('gimmeTheTrap'); if(saved) { let data = JSON.parse(saved); gameState.currentLevel = data.currentLevel??1; gameState.progressPoints = data.progressPoints??0; gameState.money = data.money??0; gameState.lean = data.lean??0; gameState.clickUpgradeLevel = data.clickUpgradeLevel??1; gameState.autoUpgradeLevel = data.autoUpgradeLevel??0; gameState.unlockedRappers = data.unlockedRappers??new Array(MAX_LEVEL).fill(false); gameState.morgensternForcedAuto = data.morgensternForcedAuto??false; if(!gameState.unlockedRappers[0]) gameState.unlockedRappers[0]=true; while(gameState.unlockedRappers.length<MAX_LEVEL) gameState.unlockedRappers.push(false); } let req = getRequiredPointsForCurrentLevel(); if(gameState.currentLevel>=MAX_LEVEL) gameState.progressPoints=0; else if(gameState.progressPoints>req) gameState.progressPoints=req; updateUI(); }
+    function updateUI() {
+        moneyDisplay.innerText = Math.floor(gameState.money); leanDisplay.innerText = Math.floor(gameState.lean); let income = getIncomePerClick(); incomeDisplay.innerText = income; let interval = getEffectiveAutoInterval(); if(gameState.autoUpgradeLevel===0) autoSpeedDisplay.innerText = "выкл"; else autoSpeedDisplay.innerText = interval + "с";
+        let curr = RAPPERS[gameState.currentLevel-1]; rapperNameSpan.innerText = curr.name; rapperImage.src = curr.image;
+        if(gameState.currentLevel>=MAX_LEVEL) { progressFillDiv.style.width='100%'; progressTextSpan.innerText='MAX'; } else { let required = getRequiredPointsForCurrentLevel(); let percent = (gameState.progressPoints/required)*100; percent = Math.min(100,percent); progressFillDiv.style.width=percent+'%'; progressTextSpan.innerText = Math.floor(gameState.progressPoints)+'/'+required; }
+        levelLabelSpan.innerText = 'lvl '+gameState.currentLevel;
+        let nextClick = gameState.clickUpgradeLevel+1; if(nextClick<=MAX_CLICK_LEVEL) { let nextUpg = CLICK_UPGRADES[nextClick-1]; upgradeClickBtn.innerText = '💪 УСИЛИТЕЛЬ КЛИКА (ур.'+gameState.clickUpgradeLevel+'→'+nextClick+') — '+nextUpg.cost+'$'; upgradeClickBtn.disabled=false; } else { upgradeClickBtn.innerText='💪 УСИЛИТЕЛЬ КЛИКА (МАКС)'; upgradeClickBtn.disabled=true; }
+        if(gameState.autoUpgradeLevel===0) { let first = AUTO_UPGRADES[0]; upgradeAutoBtn.innerText = '🤖 АВТОКЛИКЕР (ур.1) — '+first.cost+'$'; upgradeAutoBtn.disabled=false; } else if(gameState.autoUpgradeLevel<MAX_AUTO_LEVEL) { let nextAuto = AUTO_UPGRADES[gameState.autoUpgradeLevel]; upgradeAutoBtn.innerText = '🤖 АВТОКЛИКЕР (ур.'+gameState.autoUpgradeLevel+'→'+(gameState.autoUpgradeLevel+1)+') — '+nextAuto.cost+'$'; upgradeAutoBtn.disabled=false; } else { upgradeAutoBtn.innerText='🤖 АВТОКЛИКЕР (МАКС)'; upgradeAutoBtn.disabled=true; }
+    }
+    function unlockNextRapper() { if(gameState.currentLevel>=MAX_LEVEL) return false; let nextLevel = gameState.currentLevel+1; let nextIdx = nextLevel-1; if(!gameState.unlockedRappers[nextIdx]) gameState.unlockedRappers[nextIdx]=true; gameState.currentLevel=nextLevel; gameState.progressPoints=0; if(nextIdx===15) { gameState.morgensternForcedAuto=true; if(isGameActive&&!shopOpen) startAutoClickerIfNeeded(); } updateUI(); saveGame(); return true; }
+    function addProgress(points) { if(!isGameActive) return; gameState.money += points; if(gameState.currentLevel>=MAX_LEVEL) { updateUI(); saveGame(); return; } let required = getRequiredPointsForCurrentLevel(); let current = gameState.progressPoints; if(current+points>=required) { let needed = required-current; gameState.progressPoints=required; updateUI(); let overflow = points-needed; unlockNextRapper(); if(overflow>0 && gameState.currentLevel<MAX_LEVEL) addProgress(overflow); else if(overflow>0 && gameState.currentLevel>=MAX_LEVEL) { updateUI(); saveGame(); } else saveGame(); } else { gameState.progressPoints+=points; updateUI(); saveGame(); } }
+    function processOneClick() { addProgress(getIncomePerClick()); }
+    function onRapperClick() { if(!isGameActive||shopOpen) return; processOneClick(); rapperImage.style.transform='scale(0.95)'; setTimeout(()=>{ if(rapperImage) rapperImage.style.transform=''; },100); }
+    function buyClickUpgrade() { let next = gameState.clickUpgradeLevel+1; if(next>MAX_CLICK_LEVEL) return; let cost = CLICK_UPGRADES[next-1].cost; if(gameState.money>=cost) { gameState.money-=cost; gameState.clickUpgradeLevel=next; updateUI(); saveGame(); } else showToast("нет бабосов братка"); }
+    function buyAutoUpgrade() { let next = gameState.autoUpgradeLevel+1; if(next>MAX_AUTO_LEVEL) return; let cost = AUTO_UPGRADES[next-1].cost; if(gameState.money>=cost) { gameState.money-=cost; gameState.autoUpgradeLevel=next; if(gameState.morgensternForcedAuto) gameState.morgensternForcedAuto=false; updateUI(); saveGame(); if(!shopOpen) startAutoClickerIfNeeded(); } else showToast("нет бабосов братка"); }
+    function startAutoClickerIfNeeded() { if(autoClickerInterval) clearInterval(autoClickerInterval); if(shopOpen) return; if(gameState.autoUpgradeLevel>0 && isPageVisible && isGameActive) { let intervalSec = getEffectiveAutoInterval(); if(intervalSec) autoClickerInterval = setInterval(()=>{ if(isPageVisible && isGameActive && !shopOpen) processOneClick(); }, intervalSec*1000); } }
+    function stopAutoClicker() { if(autoClickerInterval) clearInterval(autoClickerInterval); autoClickerInterval=null; }
+    function handleVisibilityChange() { isPageVisible=!document.hidden; if(isPageVisible && isGameActive && !shopOpen && gameState.autoUpgradeLevel>0) startAutoClickerIfNeeded(); else if(!isPageVisible) stopAutoClicker(); }
+    function resetGame() { if(!confirm("Точно обновить кликер? Весь прогресс будет потерян!")) return; stopAutoClicker(); gameState = { currentLevel:1, progressPoints:0, money:0, lean:0, clickUpgradeLevel:1, autoUpgradeLevel:0, unlockedRappers:new Array(MAX_LEVEL).fill(false), morgensternForcedAuto:false }; gameState.unlockedRappers[0]=true; updateUI(); saveGame(); if(!shopOpen) startAutoClickerIfNeeded(); showToast("Кликер обновлён!"); }
+    function renderCollectionModal() { let available=[], unavailable=[]; for(let i=0;i<RAPPERS.length;i++) { if(gameState.unlockedRappers[i]) available.push(RAPPERS[i]); else unavailable.push(RAPPERS[i]); } let html=''; if(available.length) { html+='<div style="margin-bottom:25px;"><h4 style="color:#9b4dff;">✅ ДОСТУПНЫЕ</h4><div class="rappers-grid">'; available.forEach(r=>{ html+= '<div class="rapper-card-collection"><img src="'+r.image+'" alt="'+r.name+'"><div class="nick">'+r.name+'</div></div>'; }); html+='</div></div>'; } if(unavailable.length) { html+='<div><h4 style="color:#777;">❓ НЕДОСТУПНЫЕ</h4><div class="rappers-grid">'; unavailable.forEach(()=>{ html+='<div class="rapper-card-collection"><div style="background:#222; border-radius:24px; padding:20px; text-align:center;"><div style="height:160px; width:160px; filter: brightness(0) blur(6px); background: #333; border-radius: 24px; margin:0 auto;"></div></div><div class="nick">???</div></div>'; }); html+='</div></div>'; } collectionGrid.innerHTML=html; modal.classList.add('open'); }
+    function openShop() { shopOpen=true; stopAutoClicker(); shopPage.classList.add('open'); updateShopUI(); }
+    function closeShop() { shopPage.classList.remove('open'); shopOpen=false; if(isGameActive && gameState.autoUpgradeLevel>0) startAutoClickerIfNeeded(); }
+    function updateShopUI() { shopMoneySpan.innerText=Math.floor(gameState.money); shopLeanSpan.innerText=Math.floor(gameState.lean); convDollarsSpan.innerText=Math.floor(convLeanAmount*10000); convLeanAmountSpan.innerText=convLeanAmount; }
+    function convertCurrency() { let need = convLeanAmount*10000; if(gameState.money>=need) { gameState.money-=need; gameState.lean+=convLeanAmount; saveGame(); updateUI(); updateShopUI(); } else showCenterToast("нет бабосов братка"); }
+    incLeanBtn.onclick=()=>{ convLeanAmount++; updateShopUI(); }; decLeanBtn.onclick=()=>{ if(convLeanAmount>1) convLeanAmount--; updateShopUI(); }; convertBtn.onclick=convertCurrency; closeShopBtn.onclick=closeShop; openShopBtn.onclick=openShop;
+    function startGame() { loadingScreen.style.opacity='0'; setTimeout(()=>{ loadingScreen.style.display='none'; gameScreen.style.display='block'; isGameActive=true; loadGame(); updateUI(); startAutoClickerIfNeeded(); document.addEventListener('visibilitychange', handleVisibilityChange); rapperImage.addEventListener('click', onRapperClick); },300); }
+    function preloadImages(urls, onProgress, onComplete) { let loaded=0, total=urls.length; if(total===0) { onComplete(); return; } urls.forEach(url=>{ let img=new Image(); img.onload=()=>{ loaded++; onProgress(loaded/total); if(loaded===total) onComplete(); }; img.onerror=()=>{ loaded++; onProgress(loaded/total); if(loaded===total) onComplete(); }; img.src=url; }); }
+    function initLoading() { let urls = RAPPERS.map(r=>r.image); urls.push("https://images.cybersport.ru/images/as-is/plain/eb/eb09948c-6992-4ceb-b1ba-7aeefdd16b22.webp@jpg","https://i.ibb.co/gZgCKghL/2026-05-15-21-54-14-Photoroom.png"); preloadImages(urls, (progress)=>{ let percent=Math.floor(progress*100); loadProgressFill.style.width=percent+'%'; if(progress>=1.0) { playBtn.disabled=false; playBtn.classList.add('active'); } }, ()=>{}); }
+    playBtn.addEventListener('click', ()=>{ if(!playBtn.disabled) startGame(); }); upgradeClickBtn.addEventListener('click', buyClickUpgrade); upgradeAutoBtn.addEventListener('click', buyAutoUpgrade); openCollectionBtn.addEventListener('click', renderCollectionModal); resetGameBtn.addEventListener('click', resetGame); closeModalBtn.addEventListener('click', ()=>modal.classList.remove('open')); modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('open'); });
+    initLoading();
+<\/script>
+</body>
+</html>`;
+
+        // --------------------------------------------------------------
+        // 4. СПИСОК ИГР
+        // --------------------------------------------------------------
+        const GAMES = [
+            { id: "invoker", title: "Invoker Speed Trainer", category: "Dota 2 | Тренажёр", description: "Тренируй Инвокера! Q/W/E и R — твои друзья!", icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/invoker.png", fullHTML: INVOKER_GAME_HTML },
+            { id: "naruto", title: "Датебаё Квест", category: "Наруто | Тест", description: "Проверь знания вселенной Наруто! 4 уровня, 20 вопросов.", icon: "https://avatars.mds.yandex.net/get-games/1892995/2a00000187186184a0e476c6ccc9a0d54447/default526x314", fullHTML: NARUTO_GAME_HTML },
+            { id: "trap", title: "Gimme the Trap", category: "Кликер | Рэп-баттл", description: "Кликай по рэперам, открывай новых артистов, покупай улучшения!", icon: "https://i.ibb.co/RTyMhtbw/1-1-Photoroom.png", fullHTML: TRAP_GAME_HTML }
+        ];
+
+        // --------------------------------------------------------------
+        // 5. ОТЗЫВЫ (localStorage)
+        // --------------------------------------------------------------
+        const initialReviews = {
+            invoker: [
+                { nickname: "InvokerMaster", date: "01.06.2026", text: "Отличный тренажёр! Теперь я помню все комбинации." },
+                { nickname: "DotaFan", date: "28.05.2026", text: "Инвокер наконец-то стал понятен. Спасибо!" },
+                { nickname: "QWERuser", date: "25.05.2026", text: "Очень удобный интерфейс, но не хватает звуков." },
+                { nickname: "MidPlayer", date: "20.05.2026", text: "Прокачал скорость набора, рекорд 8 секунд!" },
+                { nickname: "GhostWalk", date: "15.05.2026", text: "Класс! Жду новые заклинания." },
+                { nickname: "SunStrike", date: "10.05.2026", text: "Лучший способ выучить Invoker." }
+            ],
+            naruto: [
+                { nickname: "Hokage7", date: "02.06.2026", text: "Вопросы реально сложные, но интересно!" },
+                { nickname: "SasukeFan", date: "30.05.2026", text: "Узнал много нового о мире Наруто." },
+                { nickname: "Rasengan", date: "28.05.2026", text: "Отличный тест, но хотелось бы больше вопросов." },
+                { nickname: "KakashiSensei", date: "25.05.2026", text: "Прошёл на 18/20, доволен." },
+                { nickname: "ObitoUchiha", date: "20.05.2026", text: "Вопрос про Обито заставил задуматься." },
+                { nickname: "NarutoUzumaki", date: "18.05.2026", text: "Датебаё! Очень крутой квиз." }
+            ],
+            trap: [
+                { nickname: "RapperKing", date: "03.06.2026", text: "Кликер огонь, уже открыл 10 уровней!" },
+                { nickname: "MoneyMaker", date: "01.06.2026", text: "Автокликер имба, но дорогой." },
+                { nickname: "TrapStar", date: "30.05.2026", text: "Фармить доллары в кайф." },
+                { nickname: "LeanLover", date: "28.05.2026", text: "Конвертер в Lean - отличная идея!" },
+                { nickname: "Morgenstern", date: "25.05.2026", text: "Жду новых рэперов." },
+                { nickname: "ScallyMilano", date: "22.05.2026", text: "Кликаю каждый день, очень залипательно." }
+            ]
+        };
+
+        function loadReviews() {
+            const saved = localStorage.getItem('gameReviews');
+            if (saved) return JSON.parse(saved);
+            else return JSON.parse(JSON.stringify(initialReviews));
+        }
+        function saveReviews(reviews) {
+            localStorage.setItem('gameReviews', JSON.stringify(reviews));
+        }
+
+        // --------------------------------------------------------------
+        // 6. ПЕРЕМЕННЫЕ СОСТОЯНИЯ
+        // --------------------------------------------------------------
+        let favorites = JSON.parse(localStorage.getItem('favoriteGames') || '[]');
+        let currentPage = 'home';
+        let currentSubPage = 'reviews'; // 'reviews' или 'contact'
+        let currentReviewGame = 'invoker';
+
+        const mainContent = document.getElementById('mainContent');
+        const sidebarEl = document.getElementById('sidebar');
+        const sidebarFavList = document.getElementById('sidebarFavList');
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const footerFeedbackBtn = document.getElementById('footerFeedbackBtn');
+
+        function saveFavorites() {
+            localStorage.setItem('favoriteGames', JSON.stringify(favorites));
+            renderFavoritesSidebar();
+            renderCurrentPage();
+        }
+        function isFavorite(id) { return favorites.includes(id); }
+        function toggleFavorite(id) {
+            if (favorites.includes(id)) favorites = favorites.filter(i => i !== id);
+            else favorites.push(id);
+            saveFavorites();
+        }
+
+        function renderFavoritesSidebar() {
+            const favs = GAMES.filter(g => favorites.includes(g.id));
+            if (favs.length === 0) {
+                sidebarFavList.innerHTML = '<div class="empty-fav"><i class="far fa-heart"></i> Нет избранных</div>';
+                return;
+            }
+            sidebarFavList.innerHTML = favs.map(g => `
+                <div class="fav-game-item" data-id="${g.id}">
+                    <img src="${g.icon}"><span>${g.title}</span><i class="fas fa-play"></i>
+                </div>
+            `).join('');
+            document.querySelectorAll('.fav-game-item').forEach(el => {
+                el.addEventListener('click', () => openGame(el.dataset.id));
+            });
+        }
+
+        function renderSidebarForPage() {
+            let menuHtml = '';
+            if (currentPage === 'home' || currentPage === 'games' || currentPage === 'favorites') {
+                menuHtml = `
+                    <li class="nav-item ${currentPage === 'home' ? 'active' : ''}" data-page="home"><i class="fas fa-home"></i> Главная</li>
+                    <li class="nav-item ${currentPage === 'games' ? 'active' : ''}" data-page="games"><i class="fas fa-dice-d6"></i> Игры</li>
+                    <li class="nav-item ${currentPage === 'favorites' ? 'active' : ''}" data-page="favorites"><i class="fas fa-heart"></i> Избранное</li>
+                `;
+            } else if (currentPage === 'feedback') {
+                menuHtml = `
+                    <li class="nav-item" data-page="home"><i class="fas fa-home"></i> ГЛАВНАЯ</li>
+                    <li class="nav-item active" data-page="feedback"><i class="fas fa-envelope"></i> ФОРМА СВЯЗИ</li>
+                `;
+            }
+            navMenu.innerHTML = menuHtml;
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    let page = item.dataset.page;
+                    if (page === 'home') navigateTo('home');
+                    else if (page === 'games') navigateTo('games');
+                    else if (page === 'favorites') navigateTo('favorites');
+                    else if (page === 'feedback') navigateTo('feedback');
+                });
+            });
+        }
+
+        function openGame(id) {
+            const game = GAMES.find(g => g.id === id);
+            if (!game) return;
+            const overlay = document.createElement('div');
+            overlay.className = 'game-page-overlay';
+            overlay.innerHTML = `
+                <div class="game-header">
+                    <h2><img src="${game.icon}"> ${game.title}</h2>
+                    <button class="back-btn" id="closeGameBtn"><i class="fas fa-arrow-left"></i> Назад</button>
+                </div>
+                <div class="game-iframe-container">
+                    <iframe srcdoc="${escapeHtml(game.fullHTML)}" frameborder="0"></iframe>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            document.getElementById('closeGameBtn').onclick = () => overlay.remove();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // --- Страница отзывов ---
+        function renderReviewsPage() {
+            let reviews = loadReviews();
+            let currentReviews = reviews[currentReviewGame] || [];
+            let gamesList = [
+                { id: 'invoker', name: 'Invoker', icon: 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/invoker.png' },
+                { id: 'naruto', name: 'Наруто', icon: 'https://avatars.mds.yandex.net/get-games/1892995/2a00000187186184a0e476c6ccc9a0d54447/default526x314' },
+                { id: 'trap', name: 'Gimme the Trap', icon: 'https://i.ibb.co/RTyMhtbw/1-1-Photoroom.png' }
+            ];
+            let selectorHtml = `<div class="reviews-game-selector">`;
+            gamesList.forEach(game => {
+                selectorHtml += `
+                    <div class="game-selector-card ${currentReviewGame === game.id ? 'active' : ''}" data-game="${game.id}">
+                        <img src="${game.icon}"><div>${game.name}</div>
+                    </div>
+                `;
+            });
+            selectorHtml += `</div>`;
+            let reviewsHtml = `<div class="reviews-list">`;
+            currentReviews.forEach(rev => {
+                reviewsHtml += `
+                    <div class="review-item">
+                        <div class="review-header"><span>${escapeHtml(rev.nickname)}</span><span>${rev.date}</span></div>
+                        <div class="review-text">${escapeHtml(rev.text)}</div>
+                    </div>
+                `;
+            });
+            reviewsHtml += `</div>`;
+            let addFormHtml = `
+                <div class="add-review-form">
+                    <h3>Оставить отзыв</h3>
+                    <input type="text" id="reviewNick" placeholder="Ваш никнейм" maxlength="30">
+                    <textarea id="reviewText" rows="3" placeholder="Ваш отзыв..."></textarea>
+                    <button id="submitReviewBtn">Отправить отзыв</button>
+                </div>
+            `;
+            mainContent.innerHTML = `
+                <div class="page-content feedback-container">
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn ${currentSubPage === 'reviews' ? 'active' : ''}" data-sub="reviews">ОТЗЫВЫ НА ИГРЫ</button>
+                        <button class="feedback-btn ${currentSubPage === 'contact' ? 'active' : ''}" data-sub="contact">ОБРАТНАЯ СВЯЗЬ</button>
+                    </div>
+                    ${selectorHtml}
+                    ${reviewsHtml}
+                    ${addFormHtml}
+                </div>
+            `;
+            document.querySelectorAll('.game-selector-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    currentReviewGame = card.dataset.game;
+                    renderReviewsPage();
+                });
+            });
+            document.getElementById('submitReviewBtn').addEventListener('click', () => {
+                let nick = document.getElementById('reviewNick').value.trim();
+                let text = document.getElementById('reviewText').value.trim();
+                if (!nick || !text) {
+                    alert('Заполните никнейм и текст отзыва');
+                    return;
+                }
+                let newReview = {
+                    nickname: nick,
+                    date: new Date().toLocaleDateString('ru-RU'),
+                    text: text
+                };
+                let reviews = loadReviews();
+                if (!reviews[currentReviewGame]) reviews[currentReviewGame] = [];
+                reviews[currentReviewGame].push(newReview);
+                saveReviews(reviews);
+                renderReviewsPage();
+            });
+            // Повторная привязка кнопок переключения между отзывами и обратной связью
+            document.querySelectorAll('.feedback-btn').forEach(btn => {
+                btn.onclick = () => {
+                    currentSubPage = btn.dataset.sub;
+                    renderFeedbackPage();
+                };
+            });
+
+        }
+
+        // --- Страница обратной связи ---
+        function renderContactPage() {
+            mainContent.innerHTML = `
+                <div class="page-content feedback-container">
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn ${currentSubPage === 'reviews' ? 'active' : ''}" data-sub="reviews">ОТЗЫВЫ НА ИГРЫ</button>
+                        <button class="feedback-btn ${currentSubPage === 'contact' ? 'active' : ''}" data-sub="contact">ОБРАТНАЯ СВЯЗЬ</button>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Свяжитесь с нами</h3>
+                        <input type="text" id="contactNick" placeholder="Никнейм">
+                        <input type="email" id="contactEmail" placeholder="Эл. почта">
+                        <input type="text" id="contactSubject" placeholder="Тема обращения">
+                        <textarea id="contactMessage" rows="4" placeholder="Ваше сообщение"></textarea>
+                        <button id="sendContactBtn">Отправить</button>
+                        <div id="contactSuccess" style="display:none;" class="success-toast">✓ Ваше сообщение успешно отправлено</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('sendContactBtn').addEventListener('click', () => {
+                let nick = document.getElementById('contactNick').value;
+                let email = document.getElementById('contactEmail').value;
+                let subject = document.getElementById('contactSubject').value;
+                let message = document.getElementById('contactMessage').value;
+                if (!nick || !email || !subject || !message) {
+                    alert('Пожалуйста, заполните все поля');
+                    return;
+                }
+
+                const templateParams = {
+                    user_name: nick,
+                    user_email: email,
+                    user_subject: subject,
+                    user_message: message
+                };
+                emailjs.send
+                emailjs.send('service_50qm9cw', 'template_503n4tc', templateParams)
+                    .then(() => {
+                        document.getElementById('contactNick').value = '';
+                        document.getElementById('contactEmail').value = '';
+                        document.getElementById('contactSubject').value = '';
+                        document.getElementById('contactMessage').value = '';
+                        let successDiv = document.getElementById('contactSuccess');
+                        successDiv.style.display = 'block';
+                        setTimeout(() => { successDiv.style.display = 'none'; }, 3000);
+                    })
+                    .catch((error) => {
+                        // ПОКАЗЫВАЕМ ОШИБКУ ПРЯМО НА СТРАНИЦЕ
+                        let errorDiv = document.getElementById('contactSuccess');
+                        errorDiv.style.backgroundColor = '#8b0000';
+                        errorDiv.style.display = 'block';
+                        errorDiv.innerHTML = '❌ Ошибка: ' + (error.text || error.message || 'Неизвестная ошибка. Проверь Public Key и настройки EmailJS.');
+                        setTimeout(() => { errorDiv.style.display = 'none'; }, 5000);
+                    });
+            });
+
+            document.querySelectorAll('.feedback-btn').forEach(btn => {
+                btn.onclick = () => {
+                    currentSubPage = btn.dataset.sub;
+                    renderFeedbackPage();
+                };
+            });
+        }
+
+        function renderFeedbackPage() {
+            if (currentSubPage === 'reviews') renderReviewsPage();
+            else if (currentSubPage === 'contact') renderContactPage();
+            else renderReviewsPage();
+            document.querySelectorAll('.feedback-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    currentSubPage = btn.dataset.sub;
+                    renderFeedbackPage();
+                });
+            });
+        }
+
+        // --- Основные страницы ---
+        function renderGamesGrid(containerId) {
+            const grid = document.getElementById(containerId);
+            if (!grid) return;
+            grid.innerHTML = GAMES.map(g => `
+                <div class="game-card" data-id="${g.id}">
+                    <div class="game-icon-wrapper">
+                        <img class="game-icon" src="${g.icon}">
+                        <div class="game-hover-overlay">
+                            <button class="hover-fav-btn ${isFavorite(g.id) ? 'active' : ''}" data-id="${g.id}">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">${g.title}</div>
+                        <div class="game-category">${g.category}</div>
+                        <div class="game-description">${g.description.substring(0, 80)}...</div>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll(`#${containerId} .game-card`).forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.hover-fav-btn')) return;
+                    openGame(card.dataset.id);
+                });
+            });
+            document.querySelectorAll(`#${containerId} .hover-fav-btn`).forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(btn.dataset.id);
+                    renderCurrentPage();
+                    renderFavoritesSidebar();
+                });
+            });
+        }
+
+        function renderHomePage() {
+            mainContent.innerHTML = `
+                <div class="page-content">
+                    <div class="hero">
+                        <h1>LAG</h1>
+                        <p>LAG — туса для сенпая и его кун-тян. Шалом, бро! Гикай с кавайных лутов, чиляй, керри, хлебай рамэн и никаких бака-фризов. Погнали, сасэгэ? Датебаё! 🎮🔥</p>
+                        <div class="hero-badge"><i class="fas fa-bolt"></i> 🍜  рамэн-party  🍜</div>
+                    </div>
+                    <div class="section-header"><h2>Популярные игры</h2><span style="color:#ff6b6b">🔥 Хит</span></div>
+                    <div class="games-grid" id="homeGrid"></div>
+                </div>
+            `;
+            renderGamesGrid('homeGrid');
+        }
+
+        function renderGamesOnlyPage() {
+            mainContent.innerHTML = `
+                <div class="page-content">
+                    <div class="section-header"><h2><i class="fas fa-dice-d6"></i> Все игры</h2><span>${GAMES.length} игры</span></div>
+                    <div class="games-grid" id="allGamesGrid"></div>
+                </div>
+            `;
+            renderGamesGrid('allGamesGrid');
+        }
+
+        function renderFavoritesPage() {
+            const favs = GAMES.filter(g => favorites.includes(g.id));
+            mainContent.innerHTML = `
+                <div class="page-content">
+                    <div class="section-header"><h2><i class="fas fa-heart"></i> Избранное</h2><span>${favs.length} игр</span></div>
+                    <div class="games-grid" id="favGrid"></div>
+                </div>
+            `;
+            const grid = document.getElementById('favGrid');
+            if (favs.length === 0) {
+                grid.innerHTML = '<div style="text-align:center;padding:60px"><i class="far fa-heart" style="font-size:3rem;color:#ff6b6b"></i><p>Добавь игры в избранное сердечком</p></div>';
+                return;
+            }
+            grid.innerHTML = favs.map(g => `
+                <div class="game-card" data-id="${g.id}">
+                    <div class="game-icon-wrapper">
+                        <img class="game-icon" src="${g.icon}">
+                        <div class="game-hover-overlay">
+                            <button class="hover-fav-btn active" data-id="${g.id}"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">${g.title}</div>
+                        <div class="game-category">${g.category}</div>
+                        <div class="game-description">${g.description.substring(0, 80)}...</div>
+                    </div>
+                </div>
+            `).join('');
+            document.querySelectorAll('#favGrid .game-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.hover-fav-btn')) return;
+                    openGame(card.dataset.id);
+                });
+            });
+            document.querySelectorAll('#favGrid .hover-fav-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(btn.dataset.id);
+                    renderFavoritesPage();
+                    renderFavoritesSidebar();
+                    if (currentPage === 'games') renderGamesOnlyPage();
+                    if (currentPage === 'home') renderHomePage();
+                });
+            });
+        }
+
+        function renderCurrentPage() {
+            renderSidebarForPage();
+            if (currentPage === 'home') renderHomePage();
+            else if (currentPage === 'games') renderGamesOnlyPage();
+            else if (currentPage === 'favorites') renderFavoritesPage();
+            else if (currentPage === 'feedback') renderFeedbackPage();
+        }
+
+        function navigateTo(page) {
+            currentPage = page;
+            if (page === 'feedback') {
+                currentSubPage = 'reviews';
+            }
+            renderCurrentPage();
+            if (window.innerWidth <= 900) sidebarEl.classList.remove('open');
+        }
+
+        footerFeedbackBtn.addEventListener('click', () => navigateTo('feedback'));
+
+        renderFavoritesSidebar();
+        renderCurrentPage();
+        menuToggle.addEventListener('click', () => sidebarEl.classList.toggle('open'));
+    </script>
+</body>
+
+</html>
